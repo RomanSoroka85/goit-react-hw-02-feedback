@@ -48,7 +48,7 @@ export default class User extends Component {
                 (this.state.good /
                   (this.state.good + this.state.neutral + this.state.bad)) *
                 100
-              ).toFixed(2) === NaN}
+              ).toFixed(2) }
               %
             </p>
           </div>
