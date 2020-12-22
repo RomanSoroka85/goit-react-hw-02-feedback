@@ -3,8 +3,8 @@ import React, { Component } from "react";
 import s from "./user.module.css";
 
 export default class User extends Component {
-  static propTypes = {};
-  static defaultProps = {};
+  // static propTypes = {};
+  // static defaultProps = {};
 
   state = {
     good: this.props.initialValue,
@@ -23,6 +23,10 @@ export default class User extends Component {
     this.setState({ bad: this.state.bad + 1 });
   };
   render() {
+    const g = this.state.good;
+    const n = this.state.neutral;
+    const b = this.state.bad;
+
     return (
       <>
         <div className={s.profile}>
@@ -38,19 +42,27 @@ export default class User extends Component {
               Bad
             </button>
             <p className={s.statistics}>Statistics</p>
-            <p>Good:{this.state.good}</p>
-            <p>Neutral:{this.state.neutral}</p>
-            <p>Bad:{this.state.bad}</p>
-            <p>Total:{this.state.good + this.state.neutral + this.state.bad}</p>
-            <p className={s.statistics}>
-              Positive feedback{" "}
-              {(
-                (this.state.good /
-                  (this.state.good + this.state.neutral + this.state.bad)) *
-                100
-              ).toFixed(2) }
-              %
-            </p>
+            {!!g && <p>Good:{g}</p>}
+            {!!n && <p>Neutral:{n}</p>}
+            {!!b && <p>Bad:{b}</p>}
+
+            {!!g + n + b && (
+              <p>
+                Total:{g + n + b}
+              </p>
+            )}
+
+            {!!g + n + b && (
+              <p className={s.statistics}>
+                Positive feedback{" "}
+                {(
+                  (g /
+                    (g + n + b)) *
+                  100
+                ).toFixed(2)}
+                %
+              </p>
+            )}
           </div>
         </div>
       </>
